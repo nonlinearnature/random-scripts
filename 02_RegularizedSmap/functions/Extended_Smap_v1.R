@@ -13,6 +13,7 @@
 # 2019.05.23: CV criterion, "lambda.min", has been changed to "lambda.1se"
 # 2019.05.28: Parallel version implemented
 # 2019.08.28: Bug fixed
+# 2020.02.11: Modified to use rEDM::compute_stats()
 #-----------------------------#
 
 extended_smap <- function(vectors,
@@ -160,11 +161,11 @@ extended_smap <- function(vectors,
   if (save_smap_coefficients)
   {
     return(list(pred = pred_vals,
-                stats = compute_stats_SSR(target[pred_indices], pred_vals[pred_indices]),
+                stats = rEDM::compute_stats(target[pred_indices], pred_vals[pred_indices]),
                 smap_coefficients = smap_coefficient_vals))
   } else {
     return(list(pred = pred_vals,
-                stats = compute_stats_SSR(target[pred_indices], pred_vals[pred_indices])))
+                stats = rEDM::compute_stats(target[pred_indices], pred_vals[pred_indices])))
   }
 }
 
